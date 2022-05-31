@@ -535,8 +535,10 @@ echo "======= create zfs pools and datasets =========="
     bpool_disks_partitions+=("${selected_disk}-part2")
   done
 
-  if [[ ${#v_selected_disks[@]} -gt 1 ]]; then
+  if [[ ${#v_selected_disks[@]} -eq 2 ]]; then
     pools_mirror_option=mirror
+  if [[ ${#v_selected_disks[@]} -gt 2 ]]; then
+    pools_mirror_option=raidz
   else
     pools_mirror_option=
   fi
